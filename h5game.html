@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<meta charset="UTF-8">
 <head>
   <title>宝箱开启小游戏</title>
   <style>
@@ -47,9 +48,36 @@
   top: 10px; /* 设置距离顶部的距离 */
   left: 10px; /* 设置距离左侧的距离 */
 }
+#functionIcons {
+  position: fixed;
+  top: 50%; /* 调整垂直位置 */
+  right: 20px; /* 调整距离右侧的距离 */
+  transform: translateY(-50%); /* 垂直居中 */
+}
+
+.function-icon {
+  width: 50px; /* 图标容器的宽度 */
+  height: 50px; /* 图标容器的高度 */
+  font-size:9px;
+  border:1px dotted;
+  text-align:center;
+  line-height:50px;
+  margin-bottom: 10px; /* 调整图标之间的垂直间距 */
+}
+
+#functionIcons img {
+  width: 32px; /* 设置图标的宽度 */
+  height: 32px; /* 设置图标的高度 */
+  margin-bottom: 10px; /* 调整图标之间的垂直间距 */
+}
+#mainContent {
+  width: 300px;
+  margin: 0 auto; /* 居中页面内容 */
+}
   </style>
 </head>
-<body style="width:360px;">
+<body>
+<div id="mainContent">
   <h1>宝箱开启小游戏</h1>
   <p>宝箱数量：<span id="chestCount">20</span></p>
   <button id="openChestButton" onclick="openChest()">打开宝箱</button>
@@ -335,5 +363,15 @@ window.onload = function() {
       equipmentModal.style.display = "none";
     }
   </script>
+  <div id="functionIcons">
+  <div class="function-icon">⛰冒险️</div>
+  <div class="function-icon">👨‍👩‍👦‍👦家族</div>
+  <div class="function-icon">🤺竞技</div>
+  <div class="function-icon">🏘️家园</div>
+  <div class="function-icon">🐗狩猎</div>
+  <div class="function-icon">⛺副本</div>
+
+</div>
+</div>
 </body>
 </html>
