@@ -92,9 +92,22 @@
   transition: opacity 0.5s ease-in-out;
 }
 
+/* Style for tooltips */
+.tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  top: -30px; /* Adjust the tooltip position as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
 
-  </style>
+</style>
 </head>
+
 <body>
 <div id="mainContent">
 <div id="warp">
@@ -323,7 +336,7 @@ function showToast(message) {
       var levelElement = document.getElementById("level");
       var chestCountElement = document.getElementById("chestCount");
 
-      totalScoreElement.textContent = "总分：" + totalScore;
+      totalScoreElement.textContent = "战力总分：" + totalScore;
       goldElement.textContent = gold;
       experienceElement.textContent = experience;
       levelElement.textContent = level;
@@ -403,16 +416,51 @@ function showToast(message) {
       var equipmentModal = document.getElementById("equipmentModal");
       equipmentModal.style.display = "none";
     }
+
+	object.onclick=function(){SomeJavaScriptCode};
+
+// 找到所有具有 "function-icon" 类的元素
+var icons = document.querySelectorAll(".function-icon");
+
+// 为每个图标添加点击事件处理程序
+icons.forEach(function (icon) {
+  // 添加点击事件处理程序
+  icon.addEventListener("click", function () {
+    // 获取图标上的提示信息
+    var tooltipText = icon.getAttribute("data-tooltip");
+
+    // 创建一个提示框元素
+    var tooltip = document.createElement("div");
+    tooltip.className = "tooltip";
+    tooltip.textContent = tooltipText;
+
+    // 将提示框添加到页面上，并定位在图标上方
+    document.body.appendChild(tooltip);
+    var iconRect = icon.getBoundingClientRect();
+    var tooltipRect = tooltip.getBoundingClientRect();
+    tooltip.style.left = iconRect.left + iconRect.width / 2 - tooltipRect.width / 2 + "px";
+    tooltip.style.top = iconRect.top - tooltipRect.height - 5 + "px";
+
+    // 在一定时间后隐藏提示框
+    setTimeout(function () {
+      document.body.removeChild(tooltip);
+    }, 2000); // 2秒后隐藏提示框
+  });
+});
+
   </script>
 </div>
 <div id="functionIcons">
-  <div class="function-icon">⛰冒险️</div>
-  <div class="function-icon">👨‍👩‍👦‍👦家族</div>
-  <div class="function-icon">🤺竞技</div>
-  <div class="function-icon">🏘️家园</div>
-  <div class="function-icon">🐗狩猎</div>
-  <div class="function-icon">⛺副本</div>
+<!-- 在每个图标上添加一个唯一的id，并为它们添加点击事件监听器 -->
+<div class="function-icon" id="exploreIcon" data-tooltip="Explore">⛰冒险️</div>
+<div class="function-icon" id="familyIcon" data-tooltip="Family">👨‍👩‍👦‍👦家族</div>
+<div class="function-icon" id="arenaIcon" data-tooltip="Arena">🤺竞技</div>
+<div class="function-icon" id="homeIcon" data-tooltip="Home">🏘️家园</div>
+<div class="function-icon" id="huntingIcon" data-tooltip="Hunting">🐗狩猎</div>
+<div class="function-icon" id="dungeonIcon" data-tooltip="Dungeon">⛺副本</div>
+
 </div>
+
 </div>
 </body>
 </html>
